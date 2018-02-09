@@ -2,7 +2,7 @@
 
 def projectName = "webserver"
 def imageName = "kublr/demo-webserver"
-def apiServer = "apiserver-service"
+def apiServer = "apiserver-deploy"
 
 def gitCommit = null
 def gitBranch = null
