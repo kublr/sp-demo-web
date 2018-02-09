@@ -105,12 +105,12 @@ DOCKER_IMAGE_TAG=${imageTag}
 
                     sh "ls -la"
 
-                    sh "helm lint ${webServer}"
+                    sh "helm lint webserver"
                     sh """
-                        helm upgrade -i ${webServer} \
+                        helm upgrade -i ${projectName} \
                             --set api.host=${apiServer} --set api.port=80 \
                             --set service.type=LoadBalancer --set service.externalPort=80 \
-                            --set image.tag=${imageTag}  ./${webServer}
+                            --set image.tag=${imageTag}  ./webserver
                      """
 
                     sh "helm ls"
