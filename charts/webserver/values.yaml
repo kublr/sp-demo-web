@@ -1,14 +1,14 @@
 api:
-  host: smackapi-smackapi
+  host: apiserver-service
   port: 80
 
 replicaCount: 1
 image:
-  repository: alex202/brigade-smackweb
+  repository: kublr/demo-webserver
   tag: master
   pullPolicy: Always
 service:
-  name: smackweb
+  name: webserver
   type: ClusterIP
   externalPort: 8010
   internalPort: 8010

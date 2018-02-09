@@ -1,6 +1,8 @@
 #!/usr/bin/env groovy
 
-def imageName = "alex202/brigade-smackweb"
+def projectName = "webserver"
+def imageName = "kublr/demo-webserver"
+def apiServer = "apiserver-apiserver"
 
 def gitCommit = null
 def gitBranch = null
@@ -63,7 +65,7 @@ DOCKER_IMAGE_TAG=${imageTag}
                 sh """
                     mkdir -p /go/src/github.com
                     ln -s $pwd /go/src/github.com
-                    cd /go/src/github.com/smackweb
+                    cd /go/src/github.com/${projectName}
                     go get && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o target/smackweb
                 """
             }
@@ -103,12 +105,12 @@ DOCKER_IMAGE_TAG=${imageTag}
 
                     sh "ls -la"
 
-                    sh "helm lint smackweb"
+                    sh "helm lint ${webServer}"
                     sh """
-                        helm upgrade -i smackweb \
-                            --set api.host=smackapi-smackapi --set api.port=80 \
+                        helm upgrade -i ${webServer} \
+                            --set api.host=${apiServer} --set api.port=80 \
                             --set service.type=LoadBalancer --set service.externalPort=80 \
-                            --set image.tag=${imageTag}  ./smackweb
+                            --set image.tag=${imageTag}  ./${webServer}
                      """
 
                     sh "helm ls"
