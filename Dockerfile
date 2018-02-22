@@ -1,5 +1,5 @@
 FROM alpine
-MAINTAINER Brian Redmond <brianisrunning@gmail.com>
+MAINTAINER Arkadii Ocheretnoi <aocheretnoy@kublr.com>
 
 ARG VCS_REF
 ARG BUILD_DATE
@@ -7,9 +7,9 @@ ARG VERSION
 
 # Metadata
 LABEL org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.name="Microsmack Web app" \
+      org.label-schema.name="Web app" \
       org.label-schema.description="Simple golang web app for use in Kubernetes demos" \
-      org.label-schema.vcs-url="https://github.com/chzbrgr71/microsmack" \
+      org.label-schema.vcs-url="https://github.com/chzbrgr71/microsmack.git" \
       org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.version=$VERSION \
       org.label-schema.docker.dockerfile="/smackweb/Dockerfile"
