@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 def projectName = "webserver"
-def imageName = "kublr/demo-webserver"
+def imageName = "alex202/sp-demo-web"
 def apiServer = "apiserver-deploy"
 
 def gitCommit = null
@@ -92,7 +92,7 @@ DOCKER_IMAGE_TAG=${imageTag}
                 }
             }
         }
-
+/*
         stage('do some kubectl work') {
             container('kubectl') {
 
@@ -118,5 +118,6 @@ DOCKER_IMAGE_TAG=${imageTag}
                 }
             }
         }
+*/
     }
 }
