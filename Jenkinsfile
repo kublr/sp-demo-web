@@ -1,8 +1,7 @@
 #!/usr/bin/env groovy
 
-def projectName = "webserver"
+def projectName = "sp-demo-web"
 def imageName = "alex202/sp-demo-web"
-def apiServer = "apiserver-deploy"
 
 def gitCommit = null
 def gitBranch = null
@@ -11,9 +10,7 @@ def buildDate = null
 
 podTemplate(label: 'mypod', containers: [
     containerTemplate(name: 'golang', image: 'golang:1.8', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'docker', image: 'docker', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.0', command: 'cat', ttyEnabled: true),
-    containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:v2.7.2', command: 'cat', ttyEnabled: true)
+    containerTemplate(name: 'docker', image: 'docker', ttyEnabled: true, command: 'cat')
   ],
   envVars: [
 
@@ -64,7 +61,7 @@ DOCKER_IMAGE_TAG=${imageTag}
 
                 sh """
                     mkdir -p /go/src/github.com
-                    ln -s $pwd /go/src/github.com/
+                    ln -s $pwd /go/src/github.com/${projectName}
                     ls -la /go/src/github.com
                     cd /go/src/github.com/${projectName}
                     go get && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o target/smackweb
@@ -92,32 +89,5 @@ DOCKER_IMAGE_TAG=${imageTag}
                 }
             }
         }
-/*
-        stage('do some kubectl work') {
-            container('kubectl') {
-
-                sh "kubectl get nodes --all-namespaces"
-            }
-        }
-        stage('do some helm work') {
-            container('helm') {
-
-                dir("charts") {
-
-                    sh "ls -la"
-
-                    sh "helm lint webserver"
-                    sh """
-                        helm upgrade -i ${projectName} \
-                            --set api.host=${apiServer} --set api.port=80 \
-                            --set service.type=LoadBalancer --set service.externalPort=80 \
-                            --set image.tag=${imageTag}  ./webserver
-                     """
-
-                    sh "helm ls"
-                }
-            }
-        }
-*/
     }
 }

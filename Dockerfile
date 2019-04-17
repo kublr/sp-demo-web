@@ -19,9 +19,9 @@ ENV APP_VERSION $VERSION
 ENV IMAGE_BUILD_DATE $BUILD_DATE
 
 WORKDIR /app
-ADD target/smackweb /app/
+ADD target/demo-webserver /app/
 
-RUN chmod +x /app/smackweb
+RUN chmod +x /app/demo-webserver
 
-ENTRYPOINT /app/smackweb
+ENTRYPOINT /app/demo0webserver
 EXPOSE 8010
