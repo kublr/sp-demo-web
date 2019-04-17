@@ -5,6 +5,8 @@ ARG VCS_REF
 ARG BUILD_DATE
 ARG VERSION
 
+AGR ABC
+
 # Metadata
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.name="Web app" \
