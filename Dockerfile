@@ -23,5 +23,5 @@ ADD target/demo-webserver /app/
 
 RUN chmod +x /app/demo-webserver
 
-ENTRYPOINT /app/demo0webserver
+ENTRYPOINT /app/demo-webserver
 EXPOSE 8010
