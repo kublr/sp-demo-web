@@ -5,7 +5,7 @@ ARG VCS_REF
 ARG BUILD_DATE
 ARG VERSION
 
-AGR ABC
+ENV ABC 111
 
 # Metadata
 LABEL org.label-schema.vcs-ref=$VCS_REF \
