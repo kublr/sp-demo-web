@@ -64,7 +64,7 @@ DOCKER_IMAGE_TAG=${imageTag}
                     ln -s $pwd /go/src/github.com/${projectName}
                     ls -la /go/src/github.com
                     cd /go/src/github.com/${projectName}
-                    go get && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o target/smackweb
+                    go get && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o target/demo-webserver
                 """
             }
         }
