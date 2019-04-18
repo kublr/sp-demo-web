@@ -8,6 +8,8 @@ def gitBranch = null
 def imageTag = null
 def buildDate = null
 
+def version = "0.1"
+
 podTemplate(label: 'mypod', containers: [
     containerTemplate(name: 'golang', image: 'golang:1.8', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker', ttyEnabled: true, command: 'cat')
@@ -49,7 +51,7 @@ BUILD_NUMBER=${env.BUILD_NUMBER}
 BUILD_DATE=${buildDate}
 BUILD_GIT_COMMIT=${gitCommit}
 BUILD_GIT_BRANCH=${gitBranch}
-DOCKER_IMAGE_TAG=${imageTag}
+DOCKER_IMAGE_TAG=${version}.${env.BUILD_NUMBER}
 """
 
         echo buildInfo
